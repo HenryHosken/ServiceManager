@@ -39,6 +39,21 @@
             this.Img02 = new System.Windows.Forms.PictureBox();
             this.Img03 = new System.Windows.Forms.PictureBox();
             this.Img01 = new System.Windows.Forms.PictureBox();
+            this.MenuFuncionariosCadastros = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuClientesCadastros = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuUsuariosCadastros = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuFornecedoresCadastros = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuProdutosProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuEstoqueProdutos = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuFluxoCaixaMovimentacoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuLancamentoVendasMovimentacoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuEntradasSaidasMovimentacoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDespesasMovimentacoes = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuProdutosRelatorios = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuVendasRelatorios = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMovimentacoesRelatorios = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuEntradasSaidasRelatorios = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDespesasRelatorios = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Img04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Img02)).BeginInit();
@@ -63,24 +78,43 @@
             // 
             // cadastrosToolStripMenuItem
             // 
+            this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuFuncionariosCadastros,
+            this.MenuClientesCadastros,
+            this.MenuUsuariosCadastros,
+            this.MenuFornecedoresCadastros});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
             // 
             // produtosToolStripMenuItem
             // 
+            this.produtosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuProdutosProdutos,
+            this.MenuEstoqueProdutos});
             this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
             this.produtosToolStripMenuItem.Size = new System.Drawing.Size(69, 21);
             this.produtosToolStripMenuItem.Text = "Produtos";
             // 
             // movimentaçôesToolStripMenuItem
             // 
+            this.movimentaçôesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuFluxoCaixaMovimentacoes,
+            this.MenuLancamentoVendasMovimentacoes,
+            this.MenuEntradasSaidasMovimentacoes,
+            this.MenuDespesasMovimentacoes});
             this.movimentaçôesToolStripMenuItem.Name = "movimentaçôesToolStripMenuItem";
             this.movimentaçôesToolStripMenuItem.Size = new System.Drawing.Size(106, 21);
             this.movimentaçôesToolStripMenuItem.Text = "Movimentaçôes";
             // 
             // relatóriosToolStripMenuItem
             // 
+            this.relatóriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuProdutosRelatorios,
+            this.MenuVendasRelatorios,
+            this.MenuMovimentacoesRelatorios,
+            this.MenuEntradasSaidasRelatorios,
+            this.MenuDespesasRelatorios});
             this.relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
             this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(75, 21);
             this.relatóriosToolStripMenuItem.Text = "Relatórios";
@@ -131,6 +165,96 @@
             this.Img01.TabIndex = 1;
             this.Img01.TabStop = false;
             // 
+            // MenuFuncionariosCadastros
+            // 
+            this.MenuFuncionariosCadastros.Name = "MenuFuncionariosCadastros";
+            this.MenuFuncionariosCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuFuncionariosCadastros.Text = "Funcionários";
+            // 
+            // MenuClientesCadastros
+            // 
+            this.MenuClientesCadastros.Name = "MenuClientesCadastros";
+            this.MenuClientesCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuClientesCadastros.Text = "Clientes";
+            // 
+            // MenuUsuariosCadastros
+            // 
+            this.MenuUsuariosCadastros.Name = "MenuUsuariosCadastros";
+            this.MenuUsuariosCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuUsuariosCadastros.Text = "Usuários";
+            // 
+            // MenuFornecedoresCadastros
+            // 
+            this.MenuFornecedoresCadastros.Name = "MenuFornecedoresCadastros";
+            this.MenuFornecedoresCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuFornecedoresCadastros.Text = "Fornecedores";
+            // 
+            // MenuProdutosProdutos
+            // 
+            this.MenuProdutosProdutos.Name = "MenuProdutosProdutos";
+            this.MenuProdutosProdutos.Size = new System.Drawing.Size(180, 22);
+            this.MenuProdutosProdutos.Text = "Produtos";
+            // 
+            // MenuEstoqueProdutos
+            // 
+            this.MenuEstoqueProdutos.Name = "MenuEstoqueProdutos";
+            this.MenuEstoqueProdutos.Size = new System.Drawing.Size(180, 22);
+            this.MenuEstoqueProdutos.Text = "Estoques";
+            // 
+            // MenuFluxoCaixaMovimentacoes
+            // 
+            this.MenuFluxoCaixaMovimentacoes.Name = "MenuFluxoCaixaMovimentacoes";
+            this.MenuFluxoCaixaMovimentacoes.Size = new System.Drawing.Size(188, 22);
+            this.MenuFluxoCaixaMovimentacoes.Text = "Fluxo Caixa";
+            // 
+            // MenuLancamentoVendasMovimentacoes
+            // 
+            this.MenuLancamentoVendasMovimentacoes.Name = "MenuLancamentoVendasMovimentacoes";
+            this.MenuLancamentoVendasMovimentacoes.Size = new System.Drawing.Size(188, 22);
+            this.MenuLancamentoVendasMovimentacoes.Text = "Lançamento Vendas";
+            // 
+            // MenuEntradasSaidasMovimentacoes
+            // 
+            this.MenuEntradasSaidasMovimentacoes.Name = "MenuEntradasSaidasMovimentacoes";
+            this.MenuEntradasSaidasMovimentacoes.Size = new System.Drawing.Size(188, 22);
+            this.MenuEntradasSaidasMovimentacoes.Text = "Entradas / Saidas";
+            // 
+            // MenuDespesasMovimentacoes
+            // 
+            this.MenuDespesasMovimentacoes.Name = "MenuDespesasMovimentacoes";
+            this.MenuDespesasMovimentacoes.Size = new System.Drawing.Size(188, 22);
+            this.MenuDespesasMovimentacoes.Text = "Despesas";
+            // 
+            // MenuProdutosRelatorios
+            // 
+            this.MenuProdutosRelatorios.Name = "MenuProdutosRelatorios";
+            this.MenuProdutosRelatorios.Size = new System.Drawing.Size(180, 22);
+            this.MenuProdutosRelatorios.Text = "Produtos";
+            // 
+            // MenuVendasRelatorios
+            // 
+            this.MenuVendasRelatorios.Name = "MenuVendasRelatorios";
+            this.MenuVendasRelatorios.Size = new System.Drawing.Size(180, 22);
+            this.MenuVendasRelatorios.Text = "Vendas";
+            // 
+            // MenuMovimentacoesRelatorios
+            // 
+            this.MenuMovimentacoesRelatorios.Name = "MenuMovimentacoesRelatorios";
+            this.MenuMovimentacoesRelatorios.Size = new System.Drawing.Size(180, 22);
+            this.MenuMovimentacoesRelatorios.Text = "Movimentações";
+            // 
+            // MenuEntradasSaidasRelatorios
+            // 
+            this.MenuEntradasSaidasRelatorios.Name = "MenuEntradasSaidasRelatorios";
+            this.MenuEntradasSaidasRelatorios.Size = new System.Drawing.Size(180, 22);
+            this.MenuEntradasSaidasRelatorios.Text = "Entradas / Saidas";
+            // 
+            // MenuDespesasRelatorios
+            // 
+            this.MenuDespesasRelatorios.Name = "MenuDespesasRelatorios";
+            this.MenuDespesasRelatorios.Size = new System.Drawing.Size(180, 22);
+            this.MenuDespesasRelatorios.Text = "Despesas";
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -171,6 +295,21 @@
         private System.Windows.Forms.PictureBox Img03;
         private System.Windows.Forms.PictureBox Img04;
         private System.Windows.Forms.PictureBox Img02;
+        private System.Windows.Forms.ToolStripMenuItem MenuFuncionariosCadastros;
+        private System.Windows.Forms.ToolStripMenuItem MenuClientesCadastros;
+        private System.Windows.Forms.ToolStripMenuItem MenuUsuariosCadastros;
+        private System.Windows.Forms.ToolStripMenuItem MenuFornecedoresCadastros;
+        private System.Windows.Forms.ToolStripMenuItem MenuProdutosProdutos;
+        private System.Windows.Forms.ToolStripMenuItem MenuEstoqueProdutos;
+        private System.Windows.Forms.ToolStripMenuItem MenuFluxoCaixaMovimentacoes;
+        private System.Windows.Forms.ToolStripMenuItem MenuLancamentoVendasMovimentacoes;
+        private System.Windows.Forms.ToolStripMenuItem MenuEntradasSaidasMovimentacoes;
+        private System.Windows.Forms.ToolStripMenuItem MenuDespesasMovimentacoes;
+        private System.Windows.Forms.ToolStripMenuItem MenuProdutosRelatorios;
+        private System.Windows.Forms.ToolStripMenuItem MenuVendasRelatorios;
+        private System.Windows.Forms.ToolStripMenuItem MenuMovimentacoesRelatorios;
+        private System.Windows.Forms.ToolStripMenuItem MenuEntradasSaidasRelatorios;
+        private System.Windows.Forms.ToolStripMenuItem MenuDespesasRelatorios;
     }
 }
 
