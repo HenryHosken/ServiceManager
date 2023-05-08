@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceManager.Cadastros;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace ServiceManager
         public MainFrm()
         {
             InitializeComponent();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void MenuFuncionariosCadastros_Click(object sender, EventArgs e)
+        {
+            Cadastros.FrmFuncionario frm = new FrmFuncionario();
+            frm.ShowDialog();
         }
     }
 }
