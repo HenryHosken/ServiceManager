@@ -90,26 +90,26 @@
             // MenuFuncionariosCadastros
             // 
             this.MenuFuncionariosCadastros.Name = "MenuFuncionariosCadastros";
-            this.MenuFuncionariosCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuFuncionariosCadastros.Size = new System.Drawing.Size(149, 22);
             this.MenuFuncionariosCadastros.Text = "Funcionários";
             this.MenuFuncionariosCadastros.Click += new System.EventHandler(this.MenuFuncionariosCadastros_Click);
             // 
             // MenuClientesCadastros
             // 
             this.MenuClientesCadastros.Name = "MenuClientesCadastros";
-            this.MenuClientesCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuClientesCadastros.Size = new System.Drawing.Size(149, 22);
             this.MenuClientesCadastros.Text = "Clientes";
             // 
             // MenuUsuariosCadastros
             // 
             this.MenuUsuariosCadastros.Name = "MenuUsuariosCadastros";
-            this.MenuUsuariosCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuUsuariosCadastros.Size = new System.Drawing.Size(149, 22);
             this.MenuUsuariosCadastros.Text = "Usuários";
             // 
             // MenuFornecedoresCadastros
             // 
             this.MenuFornecedoresCadastros.Name = "MenuFornecedoresCadastros";
-            this.MenuFornecedoresCadastros.Size = new System.Drawing.Size(180, 22);
+            this.MenuFornecedoresCadastros.Size = new System.Drawing.Size(149, 22);
             this.MenuFornecedoresCadastros.Text = "Fornecedores";
             // 
             // produtosToolStripMenuItem
@@ -249,7 +249,7 @@
             // 
             // Img01
             // 
-            this.Img01.Image = global::ServiceManager.Properties.Resources.acquisition;
+            this.Img01.Image = global::ServiceManager.Properties.Resources.carrinho_de_compras;
             this.Img01.Location = new System.Drawing.Point(12, 111);
             this.Img01.Name = "Img01";
             this.Img01.Size = new System.Drawing.Size(197, 153);

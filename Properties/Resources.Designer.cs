@@ -63,9 +63,9 @@ namespace ServiceManager.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap acquisition {
+        internal static System.Drawing.Bitmap carrinho_de_compras {
             get {
-                object obj = ResourceManager.GetObject("acquisition", resourceCulture);
+                object obj = ResourceManager.GetObject("carrinho-de-compras", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

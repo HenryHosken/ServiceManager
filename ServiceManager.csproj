@@ -90,9 +90,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\acquisition.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\dollar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +97,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carrinho-de-compras.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
