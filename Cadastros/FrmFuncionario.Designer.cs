@@ -34,20 +34,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtTelefone = new System.Windows.Forms.TextBox();
-            this.txtEndereco = new System.Windows.Forms.TextBox();
             this.cbCargo = new System.Windows.Forms.ComboBox();
             this.txtCpf = new System.Windows.Forms.TextBox();
-            this.imgFuncionario = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).BeginInit();
+            this.btnImagen = new System.Windows.Forms.Button();
+            this.imgFuncionario = new System.Windows.Forms.PictureBox();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -100,16 +100,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Cargo :";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(588, 94);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 25);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Foto :";
-            // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(118, 12);
@@ -123,13 +113,6 @@
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(185, 22);
             this.txtTelefone.TabIndex = 7;
-            // 
-            // txtEndereco
-            // 
-            this.txtEndereco.Location = new System.Drawing.Point(118, 94);
-            this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(433, 22);
-            this.txtEndereco.TabIndex = 8;
             // 
             // cbCargo
             // 
@@ -151,15 +134,6 @@
             this.txtCpf.Size = new System.Drawing.Size(185, 22);
             this.txtCpf.TabIndex = 11;
             // 
-            // imgFuncionario
-            // 
-            this.imgFuncionario.Location = new System.Drawing.Point(670, 94);
-            this.imgFuncionario.Name = "imgFuncionario";
-            this.imgFuncionario.Size = new System.Drawing.Size(185, 78);
-            this.imgFuncionario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgFuncionario.TabIndex = 12;
-            this.imgFuncionario.TabStop = false;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -179,6 +153,7 @@
             this.btnNovo.TabIndex = 14;
             this.btnNovo.Text = "Novo";
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // btnSalvar
             // 
@@ -188,6 +163,7 @@
             this.btnSalvar.TabIndex = 15;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnExcluir
             // 
@@ -197,6 +173,7 @@
             this.btnExcluir.TabIndex = 16;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnEditar
             // 
@@ -206,6 +183,38 @@
             this.btnEditar.TabIndex = 17;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnImagen
+            // 
+            this.btnImagen.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen.Location = new System.Drawing.Point(592, 94);
+            this.btnImagen.Name = "btnImagen";
+            this.btnImagen.Size = new System.Drawing.Size(72, 33);
+            this.btnImagen.TabIndex = 18;
+            this.btnImagen.Text = "Foto :";
+            this.btnImagen.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnImagen.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnImagen.UseVisualStyleBackColor = true;
+            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
+            // 
+            // imgFuncionario
+            // 
+            this.imgFuncionario.Image = global::ServiceManager.Properties.Resources.camerapng_parspng_com_2;
+            this.imgFuncionario.Location = new System.Drawing.Point(670, 94);
+            this.imgFuncionario.Name = "imgFuncionario";
+            this.imgFuncionario.Size = new System.Drawing.Size(185, 78);
+            this.imgFuncionario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFuncionario.TabIndex = 12;
+            this.imgFuncionario.TabStop = false;
+            // 
+            // txtEndereco
+            // 
+            this.txtEndereco.Location = new System.Drawing.Point(118, 94);
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(433, 22);
+            this.txtEndereco.TabIndex = 19;
             // 
             // FrmFuncionario
             // 
@@ -213,6 +222,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.txtEndereco);
+            this.Controls.Add(this.btnImagen);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
@@ -221,10 +232,8 @@
             this.Controls.Add(this.imgFuncionario);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.cbCargo);
-            this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -236,8 +245,8 @@
             this.Name = "FrmFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Funcionário";
-            ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,10 +259,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtTelefone;
-        private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.ComboBox cbCargo;
         private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.PictureBox imgFuncionario;
@@ -262,5 +269,7 @@
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnImagen;
+        private System.Windows.Forms.TextBox txtEndereco;
     }
 }

@@ -63,6 +63,16 @@ namespace ServiceManager.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap camerapng_parspng_com_2 {
+            get {
+                object obj = ResourceManager.GetObject("camerapng.parspng.com-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap carrinho_de_compras {
             get {
                 object obj = ResourceManager.GetObject("carrinho-de-compras", resourceCulture);
