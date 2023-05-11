@@ -28,12 +28,36 @@ namespace ServiceManager.Cadastros
         private void btnNovo_Click(object sender, EventArgs e)
         {
 
+        }       
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
         }
 
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            //tratamento de dados
+            if ( txtNome.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Preencha o campo NOME", "Cadastro funcionaários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNome.Focus();
+                return;
+            }
+            if (txtCpf.Text == "   .   .   -" || txtCpf.Text.Length < 14)
+            {
+                MessageBox.Show("Preencha o campo CPF", "Cadastro funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCpf.Focus();
+                return;
+            }
+
+            //Subir dados para db
             Conect.AbrirConexao();
-            
+
             sql = "INSERT INTO funcionarios(nome, cpf, telefone, cargo,	endereco, data, imagem) VALUES(@nome, @cpf, @telefone, @cargo, @endereco, now(), @imagem)";
 
             cmd = new MySqlCommand(sql, Conect.conec);
@@ -46,16 +70,6 @@ namespace ServiceManager.Cadastros
 
             cmd.ExecuteNonQuery();
             Conect.FecharConexao();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnImagen_Click(object sender, EventArgs e)
