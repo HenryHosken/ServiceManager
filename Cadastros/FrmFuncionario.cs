@@ -48,7 +48,7 @@ namespace ServiceManager.Cadastros
                 txtNome.Focus();
                 return;
             }
-            if (txtCpf.Text == "   .   .   -" || txtCpf.Text.Length < 14)
+            if (txtCpf.Text == "   ,   ,   -" || txtCpf.Text.Length < 14)
             {
                 MessageBox.Show("Preencha o campo CPF", "Cadastro funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCpf.Focus();
