@@ -110,10 +110,13 @@
     <None Include="Resources\wallet.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\carrinho-de-compras.png" />
+    <None Include="Resources\acquisition.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\camerapng.parspng.com-2.png" />
+    <None Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping_cart.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

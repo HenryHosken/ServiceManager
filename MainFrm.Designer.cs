@@ -249,7 +249,9 @@
             // 
             // Img01
             // 
-            this.Img01.Image = global::ServiceManager.Properties.Resources.carrinho_de_compras;
+            this.Img01.ErrorImage = null;
+            this.Img01.Image = global::ServiceManager.Properties.Resources.shopping_cart;
+            this.Img01.InitialImage = null;
             this.Img01.Location = new System.Drawing.Point(12, 111);
             this.Img01.Name = "Img01";
             this.Img01.Size = new System.Drawing.Size(197, 153);

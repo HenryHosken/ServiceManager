@@ -63,9 +63,9 @@ namespace ServiceManager.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap camerapng_parspng_com_2 {
+        internal static System.Drawing.Bitmap acquisition {
             get {
-                object obj = ResourceManager.GetObject("camerapng.parspng.com-2", resourceCulture);
+                object obj = ResourceManager.GetObject("acquisition", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace ServiceManager.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap carrinho_de_compras {
+        internal static System.Drawing.Bitmap camera {
             get {
-                object obj = ResourceManager.GetObject("carrinho-de-compras", resourceCulture);
+                object obj = ResourceManager.GetObject("camera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +96,16 @@ namespace ServiceManager.Properties {
         internal static System.Drawing.Bitmap expenses {
             get {
                 object obj = ResourceManager.GetObject("expenses", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shopping_cart {
+            get {
+                object obj = ResourceManager.GetObject("shopping_cart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

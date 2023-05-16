@@ -35,9 +35,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtTelefone = new System.Windows.Forms.TextBox();
             this.cbCargo = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Grid = new System.Windows.Forms.DataGridView();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -46,7 +45,9 @@
             this.imgFuncionario = new System.Windows.Forms.PictureBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.txtCpf = new System.Windows.Forms.MaskedTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,20 +103,15 @@
             // 
             // txtNome
             // 
+            this.txtNome.Enabled = false;
             this.txtNome.Location = new System.Drawing.Point(118, 12);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(433, 22);
             this.txtNome.TabIndex = 6;
             // 
-            // txtTelefone
-            // 
-            this.txtTelefone.Location = new System.Drawing.Point(118, 49);
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(185, 22);
-            this.txtTelefone.TabIndex = 7;
-            // 
             // cbCargo
             // 
+            this.cbCargo.Enabled = false;
             this.cbCargo.FormattingEnabled = true;
             this.cbCargo.Items.AddRange(new object[] {
             "Dono",
@@ -127,20 +123,20 @@
             this.cbCargo.Size = new System.Drawing.Size(185, 24);
             this.cbCargo.TabIndex = 10;
             // 
-            // dataGridView1
+            // Grid
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 178);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1045, 324);
-            this.dataGridView1.TabIndex = 13;
+            this.Grid.AllowUserToAddRows = false;
+            this.Grid.AllowUserToDeleteRows = false;
+            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid.Location = new System.Drawing.Point(10, 178);
+            this.Grid.Name = "Grid";
+            this.Grid.ReadOnly = true;
+            this.Grid.Size = new System.Drawing.Size(1045, 324);
+            this.Grid.TabIndex = 13;
             // 
             // btnNovo
             // 
-            this.btnNovo.Location = new System.Drawing.Point(373, 519);
+            this.btnNovo.Location = new System.Drawing.Point(346, 519);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 23);
             this.btnNovo.TabIndex = 14;
@@ -150,7 +146,8 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(454, 519);
+            this.btnSalvar.Enabled = false;
+            this.btnSalvar.Location = new System.Drawing.Point(427, 519);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 15;
@@ -160,17 +157,18 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(616, 519);
+            this.btnExcluir.Enabled = false;
+            this.btnExcluir.Location = new System.Drawing.Point(589, 519);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 23);
             this.btnExcluir.TabIndex = 16;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(535, 519);
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Location = new System.Drawing.Point(508, 519);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 17;
@@ -182,6 +180,7 @@
             // 
             this.btnImagen.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnImagen.Enabled = false;
             this.btnImagen.FlatAppearance.BorderSize = 0;
             this.btnImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -197,7 +196,7 @@
             // 
             // imgFuncionario
             // 
-            this.imgFuncionario.Image = global::ServiceManager.Properties.Resources.camerapng_parspng_com_2;
+            this.imgFuncionario.Image = global::ServiceManager.Properties.Resources.camera;
             this.imgFuncionario.Location = new System.Drawing.Point(670, 50);
             this.imgFuncionario.Name = "imgFuncionario";
             this.imgFuncionario.Size = new System.Drawing.Size(185, 107);
@@ -207,6 +206,7 @@
             // 
             // txtEndereco
             // 
+            this.txtEndereco.Enabled = false;
             this.txtEndereco.Location = new System.Drawing.Point(118, 94);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(433, 22);
@@ -214,11 +214,32 @@
             // 
             // txtCpf
             // 
+            this.txtCpf.Enabled = false;
             this.txtCpf.Location = new System.Drawing.Point(373, 50);
             this.txtCpf.Mask = "000.000.000-00";
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(178, 22);
             this.txtCpf.TabIndex = 20;
+            // 
+            // txtTelefone
+            // 
+            this.txtTelefone.Enabled = false;
+            this.txtTelefone.Location = new System.Drawing.Point(118, 50);
+            this.txtTelefone.Mask = "(00) 00000-0000";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(178, 22);
+            this.txtTelefone.TabIndex = 21;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(670, 519);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FrmFuncionario
             // 
@@ -226,6 +247,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.btnImagen);
@@ -233,10 +256,9 @@
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Grid);
             this.Controls.Add(this.imgFuncionario);
             this.Controls.Add(this.cbCargo);
-            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -249,7 +271,8 @@
             this.Name = "FrmFuncionario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Funcionário";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.FrmFuncionario_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -264,10 +287,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtTelefone;
         private System.Windows.Forms.ComboBox cbCargo;
         private System.Windows.Forms.PictureBox imgFuncionario;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Grid;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
@@ -275,5 +297,7 @@
         private System.Windows.Forms.Button btnImagen;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.MaskedTextBox txtCpf;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
