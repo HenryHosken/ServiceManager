@@ -10,16 +10,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
 namespace ServiceManager.Cadastros
 {
     public partial class FrmFuncionario : Form
     {
+        //Inicio metodos       
         Conexao Conect = new Conexao();
         string sql;
         MySqlCommand cmd;
         string foto;
-
-        //Inicio metodos
+        string id;
+        string cpfAntigo;
+       
         private byte[] img()
         {
             byte[] imagem_byte = null;
@@ -33,6 +36,19 @@ namespace ServiceManager.Cadastros
             imagem_byte = br.ReadBytes((int)fs.Length);
             return imagem_byte;
         }
+
+        private void listar()
+        {
+            Conect.AbrirConexao();
+            sql = "SELECT * FROM funcionarios ORDER BY nome asc";
+            cmd = new MySqlCommand(sql, Conect.conec);
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+            da.SelectCommand = cmd;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            grid.DataSource = dt;
+            Conect.FecharConexao();
+        }       
 
         private void LimparFoto()
         {
@@ -72,33 +88,42 @@ namespace ServiceManager.Cadastros
             txtTelefone.Text = "";
             cbCargo.Text = "";
         }
-        private void listar()
+       
+        private void FormatarGD()
         {
-            Conect.AbrirConexao();
-            sql = "SELECT * FROM funcionarios ORDER BY nome asc";
-            cmd = new MySqlCommand(sql, Conect.conec);
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            Grid.DataSource = dt;
-            Conect.FecharConexao();
+            grid.Columns[0].HeaderText = "ID";
+            grid.Columns[1].HeaderText = "Nome";
+            grid.Columns[2].HeaderText = "CPF";
+            grid.Columns[3].HeaderText = "Telefone";
+            grid.Columns[4].HeaderText = "Cargo";
+            grid.Columns[5].HeaderText = "Endereço";
+            grid.Columns[6].HeaderText = "Data";
+            grid.Columns[7].HeaderText = "Imagem";
+
+
+            grid.Columns[0].Visible = false;
+            grid.Columns[7].Visible = false;
         }
+        string alterouImagem = "nao";
+
+
         //Final metodos
 
         public FrmFuncionario()
         {
             InitializeComponent();            
         }
-
+        private void FrmFuncionario_Load(object sender, EventArgs e)
+        {
+            LimparFoto();
+            listar();
+            FormatarGD();
+            alterouImagem = "nao";
+        }
         private void btnNovo_Click(object sender, EventArgs e)
         {
             habilitarCampos();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-
+            txtNome.Focus();
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -138,14 +163,14 @@ namespace ServiceManager.Cadastros
             cmd.ExecuteNonQuery();
             Conect.FecharConexao();
 
-            LimparFoto();            
+            LimparFoto();
+            listar();
 
             MessageBox.Show("Resgistro salvo com sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            desabilitarCampos();
             limparCampos();
+            desabilitarCampos();           
         }
-
         private void btnImagen_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -154,19 +179,115 @@ namespace ServiceManager.Cadastros
             {
                 foto = dlg.FileName.ToString();
                 imgFuncionario.ImageLocation = foto;
+                alterouImagem = "sim";
+            }
+            
+        }
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                habilitarCampos();                
+                btnEditar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnSalvar.Enabled = false;
+                btnNovo.Enabled = false;
+                
+                id = grid.CurrentRow.Cells[0].Value.ToString();
+                txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
+                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
+                cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
+                txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
+
+                if (grid.CurrentRow.Cells[7].Value != DBNull.Value)
+                {
+                    byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[7].Value;
+                    MemoryStream ms = new MemoryStream(imagem);
+                    imgFuncionario.Image =Image.FromStream(ms);
+                }
+                else
+                {
+                    imgFuncionario.Image = Properties.Resources.camera;
+                }
+            }
+            else
+            {
+                return;
+            }
+
+        }
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (txtNome.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Preencha o campo nome", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNome.Text = "";
+                txtNome.Focus();
+                return;
+            }
+            if (txtNome.Text == "   ,   ,   -" || txtCpf.Text.Length < 14)
+            {
+                MessageBox.Show("Preencha o campo CPF", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtCpf.Focus();
+                return;
+            }
+
+            //botao editar
+            Conect.AbrirConexao();
+            if(alterouImagem == "sim")
+            {
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id= @id";
+
+                cmd = new MySqlCommand(sql, Conect.conec);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
+                cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
+                cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
+                cmd.Parameters.AddWithValue("@imagem", img());
+            } 
+            else if (alterouImagem == "nao")
+            {
+              sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id= @id";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
+                cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
+                cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);                
+            }
+
+            //Verificar se CPF já existe
+
+            if (txtCpf.Text != cpfAntigo)
+            {
+                MySqlCommand cmdVerificar;
+                cmdVerificar = new MySqlCommand ("SLECT * FROM funcionarios WHERE cpf = @cpf", Conect.conec);
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdVerificar;
+                cmdVerificar.Parameters.AddWithValue("@cpf", txtCpf.Text);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("CPF já registrado", "Casdastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop );
+                    txtCpf.Text = "";
+                    txtCpf.Focus();
+                    return;
+                }
             }
         }
-
-
-        private void FrmFuncionario_Load(object sender, EventArgs e)
-        {
-            LimparFoto();
-            listar();
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            btnEditar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnNovo.Enabled = true;
+            desabilitarCampos();
+            limparCampos();
         }
+
+       
     }
 }

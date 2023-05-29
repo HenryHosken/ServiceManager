@@ -36,7 +36,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.cbCargo = new System.Windows.Forms.ComboBox();
-            this.Grid = new System.Windows.Forms.DataGridView();
+            this.grid = new System.Windows.Forms.DataGridView();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,7 +107,7 @@
             this.txtNome.Location = new System.Drawing.Point(118, 12);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(433, 22);
-            this.txtNome.TabIndex = 6;
+            this.txtNome.TabIndex = 1;
             // 
             // cbCargo
             // 
@@ -121,18 +121,19 @@
             this.cbCargo.Location = new System.Drawing.Point(670, 16);
             this.cbCargo.Name = "cbCargo";
             this.cbCargo.Size = new System.Drawing.Size(185, 24);
-            this.cbCargo.TabIndex = 10;
+            this.cbCargo.TabIndex = 4;
             // 
-            // Grid
+            // grid
             // 
-            this.Grid.AllowUserToAddRows = false;
-            this.Grid.AllowUserToDeleteRows = false;
-            this.Grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid.Location = new System.Drawing.Point(10, 178);
-            this.Grid.Name = "Grid";
-            this.Grid.ReadOnly = true;
-            this.Grid.Size = new System.Drawing.Size(1045, 324);
-            this.Grid.TabIndex = 13;
+            this.grid.AllowUserToAddRows = false;
+            this.grid.AllowUserToDeleteRows = false;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Location = new System.Drawing.Point(10, 178);
+            this.grid.Name = "grid";
+            this.grid.ReadOnly = true;
+            this.grid.Size = new System.Drawing.Size(1045, 324);
+            this.grid.TabIndex = 13;
+            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             // 
             // btnNovo
             // 
@@ -210,7 +211,7 @@
             this.txtEndereco.Location = new System.Drawing.Point(118, 94);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(433, 22);
-            this.txtEndereco.TabIndex = 19;
+            this.txtEndereco.TabIndex = 5;
             // 
             // txtCpf
             // 
@@ -219,7 +220,7 @@
             this.txtCpf.Mask = "000.000.000-00";
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(178, 22);
-            this.txtCpf.TabIndex = 20;
+            this.txtCpf.TabIndex = 2;
             // 
             // txtTelefone
             // 
@@ -228,7 +229,7 @@
             this.txtTelefone.Mask = "(00) 00000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(178, 22);
-            this.txtTelefone.TabIndex = 21;
+            this.txtTelefone.TabIndex = 3;
             // 
             // btnCancelar
             // 
@@ -256,7 +257,7 @@
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.btnNovo);
-            this.Controls.Add(this.Grid);
+            this.Controls.Add(this.grid);
             this.Controls.Add(this.imgFuncionario);
             this.Controls.Add(this.cbCargo);
             this.Controls.Add(this.txtNome);
@@ -272,7 +273,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro Funcionário";
             this.Load += new System.EventHandler(this.FrmFuncionario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -289,7 +290,7 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.ComboBox cbCargo;
         private System.Windows.Forms.PictureBox imgFuncionario;
-        private System.Windows.Forms.DataGridView Grid;
+        private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnExcluir;
