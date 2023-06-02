@@ -165,6 +165,7 @@
             this.btnExcluir.TabIndex = 16;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnEditar
             // 
@@ -226,7 +227,7 @@
             // 
             this.txtTelefone.Enabled = false;
             this.txtTelefone.Location = new System.Drawing.Point(118, 50);
-            this.txtTelefone.Mask = "(00) 00000-0000";
+            this.txtTelefone.Mask = "(00)00000-0000";
             this.txtTelefone.Name = "txtTelefone";
             this.txtTelefone.Size = new System.Drawing.Size(178, 22);
             this.txtTelefone.TabIndex = 3;

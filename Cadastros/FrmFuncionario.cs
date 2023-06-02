@@ -63,6 +63,7 @@ namespace ServiceManager.Cadastros
             btnEditar.Enabled = false;
             btnExcluir.Enabled = false;
             btnImagen.Enabled = false;
+            btnCancelar.Enabled = false;
             cbCargo.Enabled = false;
             txtCpf.Enabled = false;
             txtTelefone.Enabled = false;
@@ -72,6 +73,7 @@ namespace ServiceManager.Cadastros
 
         private void habilitarCampos()
         {
+            btnCancelar.Enabled = true;
             btnSalvar.Enabled = true;
             txtCpf.Enabled = true;
             txtEndereco.Enabled = true;
@@ -122,6 +124,7 @@ namespace ServiceManager.Cadastros
         }
         private void btnNovo_Click(object sender, EventArgs e)
         {
+
             habilitarCampos();
             txtNome.Focus();
         }
@@ -140,7 +143,7 @@ namespace ServiceManager.Cadastros
                 txtCpf.Focus();
                 return;
             }
-            if (txtTelefone.Text == "(  )      -" || txtTelefone.Text.Length < 15)
+            if (txtTelefone.Text == "(  )     -" || txtTelefone.Text.Length < 14)
             {
                 MessageBox.Show("Preencha o campo TELEFONE", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtTelefone.Focus();
@@ -187,15 +190,17 @@ namespace ServiceManager.Cadastros
         {
             if (e.RowIndex > -1)
             {
-                habilitarCampos();                
+                desabilitarCampos();                
                 btnEditar.Enabled = true;
                 btnExcluir.Enabled = true;
                 btnSalvar.Enabled = false;
                 btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
                 
                 id = grid.CurrentRow.Cells[0].Value.ToString();
                 txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
                 txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                cpfAntigo = grid.CurrentRow.Cells[2].Value.ToString();
                 txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
                 cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
                 txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
@@ -272,22 +277,48 @@ namespace ServiceManager.Cadastros
                 da.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("CPF já registrado", "Casdastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop );
+                    MessageBox.Show("CPF já registrado", "Casdastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information );
                     txtCpf.Text = "";
                     txtCpf.Focus();
                     return;
                 }
             }
+
+            cmd.ExecuteNonQuery();
+            Conect.FecharConexao();
+            listar();
+
+            MessageBox.Show("Registro Editado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            btnEditar.Enabled = false;
+            btnNovo.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnCancelar.Enabled = false;
+            desabilitarCampos();
+            limparCampos();
+            LimparFoto();
+            alterouImagem = "nao"; // p uso de editar imagem
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnNovo.Enabled = true;
+           
             desabilitarCampos();
             limparCampos();
         }
 
-       
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Conect.AbrirConexao();
+            sql = "DELETE FROM funcionarios WHERE id = @id";
+            cmd = new MySqlCommand(sql, Conect.conec);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+            Conect.FecharConexao();
+
+            desabilitarCampos();
+            listar();
+            limparCampos();
+            MessageBox.Show("Registro Apagado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
