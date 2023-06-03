@@ -4,25 +4,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-
 
 namespace ServiceManager.Cadastros
 {
     public partial class FrmFuncionario : Form
     {
-        //Inicio metodos       
+        // Declaração de variáveis e objetos
         Conexao Conect = new Conexao();
         string sql;
         MySqlCommand cmd;
         string foto;
         string id;
         string cpfAntigo;
-       
+        string alterouImagem = "nao";
+        bool ModoEdicao = false;
+
+        // Função para converter a imagem selecionada em um array de bytes
         private byte[] img()
         {
             byte[] imagem_byte = null;
@@ -37,10 +39,11 @@ namespace ServiceManager.Cadastros
             return imagem_byte;
         }
 
+        // Função para listar os funcionários no grid
         private void listar()
         {
             Conect.AbrirConexao();
-            sql = "SELECT * FROM funcionarios ORDER BY nome asc";
+            sql = "SELECT * FROM funcionarios ORDER BY nome ASC";
             cmd = new MySqlCommand(sql, Conect.conec);
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             da.SelectCommand = cmd;
@@ -48,14 +51,16 @@ namespace ServiceManager.Cadastros
             da.Fill(dt);
             grid.DataSource = dt;
             Conect.FecharConexao();
-        }       
+        }
 
+        // Função para limpar a foto do funcionário
         private void LimparFoto()
         {
             imgFuncionario.Image = Properties.Resources.camera;
             foto = "img/camera.png";
         }
 
+        // Função para desabilitar os campos do formulário
         private void desabilitarCampos()
         {
             btnNovo.Enabled = true;
@@ -71,6 +76,7 @@ namespace ServiceManager.Cadastros
             txtNome.Enabled = false;
         }
 
+        // Função para habilitar os campos do formulário
         private void habilitarCampos()
         {
             btnCancelar.Enabled = true;
@@ -82,6 +88,8 @@ namespace ServiceManager.Cadastros
             btnImagen.Enabled = true;
             cbCargo.Enabled = true;
         }
+
+        // Função para limpar os campos do formulário
         private void limparCampos()
         {
             txtCpf.Text = "";
@@ -90,7 +98,8 @@ namespace ServiceManager.Cadastros
             txtTelefone.Text = "";
             cbCargo.Text = "";
         }
-       
+
+        // Função para formatar as colunas do grid
         private void FormatarGD()
         {
             grid.Columns[0].HeaderText = "ID";
@@ -102,35 +111,12 @@ namespace ServiceManager.Cadastros
             grid.Columns[6].HeaderText = "Data";
             grid.Columns[7].HeaderText = "Imagem";
 
-
             grid.Columns[0].Visible = false;
             grid.Columns[7].Visible = false;
         }
-        string alterouImagem = "nao";
 
-
-        //Final metodos
-
-        public FrmFuncionario()
+        private void SalvarNovo()
         {
-            InitializeComponent();            
-        }
-        private void FrmFuncionario_Load(object sender, EventArgs e)
-        {
-            LimparFoto();
-            listar();
-            FormatarGD();
-            alterouImagem = "nao";
-        }
-        private void btnNovo_Click(object sender, EventArgs e)
-        {
-
-            habilitarCampos();
-            txtNome.Focus();
-        }
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            //tratamento de dados
             if (txtNome.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Preencha o campo NOME", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -150,11 +136,9 @@ namespace ServiceManager.Cadastros
                 return;
             }
 
-            //Subir dados para db
+            // Inserir dados no banco de dados
             Conect.AbrirConexao();
-
-            sql = "INSERT INTO funcionarios(nome, cpf, telefone, cargo,	endereco, data, imagem) VALUES(@nome, @cpf, @telefone, @cargo, @endereco, now(), @imagem)";
-
+            sql = "INSERT INTO funcionarios(nome, cpf, telefone, cargo, endereco, data, imagem) VALUES(@nome, @cpf, @telefone, @cargo, @endereco, now(), @imagem)";
             cmd = new MySqlCommand(sql, Conect.conec);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
@@ -162,67 +146,19 @@ namespace ServiceManager.Cadastros
             cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
             cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
             cmd.Parameters.AddWithValue("@imagem", img());
-
             cmd.ExecuteNonQuery();
             Conect.FecharConexao();
 
             LimparFoto();
             listar();
 
-            MessageBox.Show("Resgistro salvo com sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Registro salvo com sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             limparCampos();
-            desabilitarCampos();           
+            desabilitarCampos();
         }
-        private void btnImagen_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Imagens(*.jpg; *.png) | *.jpg;*.png";
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                foto = dlg.FileName.ToString();
-                imgFuncionario.ImageLocation = foto;
-                alterouImagem = "sim";
-            }
-            
-        }
-        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                desabilitarCampos();                
-                btnEditar.Enabled = true;
-                btnExcluir.Enabled = true;
-                btnSalvar.Enabled = false;
-                btnNovo.Enabled = false;
-                btnCancelar.Enabled = true;
-                
-                id = grid.CurrentRow.Cells[0].Value.ToString();
-                txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
-                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
-                cpfAntigo = grid.CurrentRow.Cells[2].Value.ToString();
-                txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
-                cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
-                txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
 
-                if (grid.CurrentRow.Cells[7].Value != DBNull.Value)
-                {
-                    byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[7].Value;
-                    MemoryStream ms = new MemoryStream(imagem);
-                    imgFuncionario.Image =Image.FromStream(ms);
-                }
-                else
-                {
-                    imgFuncionario.Image = Properties.Resources.camera;
-                }
-            }
-            else
-            {
-                return;
-            }
-
-        }
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void SalvarEdicao()
         {
             if (txtNome.Text.ToString().Trim() == "")
             {
@@ -238,12 +174,11 @@ namespace ServiceManager.Cadastros
                 return;
             }
 
-            //botao editar
+            // Botão editar
             Conect.AbrirConexao();
-            if(alterouImagem == "sim")
+            if (alterouImagem == "sim")
             {
-                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id= @id";
-
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id = @id";
                 cmd = new MySqlCommand(sql, Conect.conec);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
@@ -252,24 +187,24 @@ namespace ServiceManager.Cadastros
                 cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
                 cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
                 cmd.Parameters.AddWithValue("@imagem", img());
-            } 
+            }
             else if (alterouImagem == "nao")
             {
-              sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id= @id";
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id = @id";
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
                 cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
                 cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
-                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);                
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
             }
 
-            //Verificar se CPF já existe
+            // Verificar se o CPF já existe
 
             if (txtCpf.Text != cpfAntigo)
             {
                 MySqlCommand cmdVerificar;
-                cmdVerificar = new MySqlCommand ("SLECT * FROM funcionarios WHERE cpf = @cpf", Conect.conec);
+                cmdVerificar = new MySqlCommand("SELECT * FROM funcionarios WHERE cpf = @cpf", Conect.conec);
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmdVerificar;
                 cmdVerificar.Parameters.AddWithValue("@cpf", txtCpf.Text);
@@ -277,7 +212,7 @@ namespace ServiceManager.Cadastros
                 da.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("CPF já registrado", "Casdastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information );
+                    MessageBox.Show("CPF já registrado", "Cadastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCpf.Text = "";
                     txtCpf.Focus();
                     return;
@@ -288,7 +223,7 @@ namespace ServiceManager.Cadastros
             Conect.FecharConexao();
             listar();
 
-            MessageBox.Show("Registro Editado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            MessageBox.Show("Registro Editado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnEditar.Enabled = false;
             btnNovo.Enabled = false;
             btnExcluir.Enabled = false;
@@ -297,28 +232,125 @@ namespace ServiceManager.Cadastros
             desabilitarCampos();
             limparCampos();
             LimparFoto();
-            alterouImagem = "nao"; // p uso de editar imagem
+            ModoEdicao = false;
+            alterouImagem = "nao"; // Para uso de editar imagem
         }
+        public FrmFuncionario()
+        {
+            InitializeComponent();
+        }
+
+        private void FrmFuncionario_Load(object sender, EventArgs e)
+        {
+            LimparFoto();
+            listar();
+            FormatarGD();
+            alterouImagem = "nao";
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            habilitarCampos();
+            txtNome.Focus();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            if (ModoEdicao == false)
+            {
+                SalvarNovo();
+            }
+            else
+            {
+                SalvarEdicao();
+            }
+
+        }
+        private void btnImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Imagens(*.jpg; *.png) | *.jpg;*.png";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                foto = dlg.FileName.ToString();
+                imgFuncionario.ImageLocation = foto;
+                alterouImagem = "sim";
+            }
+        }
+
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                desabilitarCampos();
+                btnEditar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnSalvar.Enabled = false;
+                btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
+
+                id = grid.CurrentRow.Cells[0].Value.ToString();
+                txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
+                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                cpfAntigo = grid.CurrentRow.Cells[2].Value.ToString();
+                txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
+                cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
+                txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
+
+                if (grid.CurrentRow.Cells[7].Value != DBNull.Value)
+                {
+                    byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[7].Value;
+                    MemoryStream ms = new MemoryStream(imagem);
+                    imgFuncionario.Image = Image.FromStream(ms);
+                }
+                else
+                {
+                    imgFuncionario.Image = Properties.Resources.camera;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = false;
+            ModoEdicao = (true);
+            habilitarCampos();
+            btnNovo.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnSalvar.Enabled = true;
+            btnCancelar.Enabled = true;
+        }
+
+
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-           
             desabilitarCampos();
             limparCampos();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            Conect.AbrirConexao();
-            sql = "DELETE FROM funcionarios WHERE id = @id";
-            cmd = new MySqlCommand(sql, Conect.conec);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.ExecuteNonQuery();
-            Conect.FecharConexao();
-
-            desabilitarCampos();
-            listar();
-            limparCampos();
-            MessageBox.Show("Registro Apagado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var res = MessageBox.Show("Deseja realmente excluir o registro", "Cadastro funcionarios", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                Conect.AbrirConexao();
+                sql = "DELETE FROM funcionarios WHERE id = @id";
+                cmd = new MySqlCommand(sql, Conect.conec);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+                Conect.FecharConexao();
+                listar();
+                MessageBox.Show("Registro Excluido com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                limparCampos();
+                LimparFoto();
+                desabilitarCampos();
+                btnNovo.Enabled = true;
+            }
         }
     }
 }
