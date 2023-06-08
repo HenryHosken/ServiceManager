@@ -25,7 +25,7 @@ namespace ServiceManager
 
         private void MenuFuncionariosCadastros_Click(object sender, EventArgs e)
         {
-            Cadastros.FrmFuncionario frm = new FrmFuncionario();
+           FrmFuncionario frm = new FrmFuncionario();
             frm.ShowDialog();
         }
     }
