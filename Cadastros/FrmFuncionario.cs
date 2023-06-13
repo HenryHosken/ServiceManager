@@ -1,7 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Globalization;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -21,7 +21,7 @@ namespace ServiceManager.Cadastros
         string foto;
         string id;
         string cpfAntigo;
-        string alterouImagem = "nao";
+        bool alterouImagem = false;
         bool ModoEdicao = false;
 
         // Função para converter a imagem selecionada em um array de bytes
@@ -162,23 +162,22 @@ namespace ServiceManager.Cadastros
         {
             if (txtNome.Text.ToString().Trim() == "")
             {
-                MessageBox.Show("Preencha o campo nome", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Prencha o campo nome", "Cadastro funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNome.Text = "";
                 txtNome.Focus();
                 return;
             }
-            if (txtNome.Text == "   ,   ,   -" || txtCpf.Text.Length < 14)
+            if (txtCpf.Text.ToString().Trim() == "   ,   ,   -" || txtCpf.Text.Length < 14)
             {
-                MessageBox.Show("Preencha o campo CPF", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencher o campo CPF", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtCpf.Focus();
                 return;
             }
 
-            // Botão editar
             Conect.AbrirConexao();
-            if (alterouImagem == "sim")
+            if (alterouImagem == false)
             {
-                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id = @id";
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, imagem = @imagem ";
                 cmd = new MySqlCommand(sql, Conect.conec);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
@@ -188,9 +187,10 @@ namespace ServiceManager.Cadastros
                 cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
                 cmd.Parameters.AddWithValue("@imagem", img());
             }
-            else if (alterouImagem == "nao")
+            else if (alterouImagem == false)
             {
-                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, data = @data, imagem = @imagem WHERE id = @id";
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, imagem = @imagem ";
+                cmd = new MySqlCommand(sql, Conect.conec);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
@@ -198,8 +198,6 @@ namespace ServiceManager.Cadastros
                 cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
                 cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
             }
-
-            // Verificar se o CPF já existe
 
             if (txtCpf.Text != cpfAntigo)
             {
@@ -212,16 +210,13 @@ namespace ServiceManager.Cadastros
                 da.Fill(dt);
                 if (dt.Rows.Count > 0)
                 {
-                    MessageBox.Show("CPF já registrado", "Cadastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtCpf.Text = "";
-                    txtCpf.Focus();
+                    MessageBox.Show("CPF já registrado", "Cadastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
+                cmd.ExecuteNonQuery();
+                Conect.FecharConexao();
+                listar();
             }
-
-            cmd.ExecuteNonQuery();
-            Conect.FecharConexao();
-            listar();
 
             MessageBox.Show("Registro Editado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnEditar.Enabled = false;
@@ -233,8 +228,9 @@ namespace ServiceManager.Cadastros
             limparCampos();
             LimparFoto();
             ModoEdicao = false;
-            alterouImagem = "nao"; // Para uso de editar imagem
+            alterouImagem = false; // Para uso de editar imagem
         }
+
         public FrmFuncionario()
         {
             InitializeComponent();
@@ -245,7 +241,7 @@ namespace ServiceManager.Cadastros
             LimparFoto();
             listar();
             FormatarGD();
-            alterouImagem = "nao";
+            alterouImagem = false;
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -274,7 +270,7 @@ namespace ServiceManager.Cadastros
             {
                 foto = dlg.FileName.ToString();
                 imgFuncionario.ImageLocation = foto;
-                alterouImagem = "sim";
+                alterouImagem = true;
             }
         }
 
@@ -325,8 +321,6 @@ namespace ServiceManager.Cadastros
             btnCancelar.Enabled = true;
         }
 
-
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             desabilitarCampos();
@@ -354,3 +348,6 @@ namespace ServiceManager.Cadastros
         }
     }
 }
+        
+    
+
