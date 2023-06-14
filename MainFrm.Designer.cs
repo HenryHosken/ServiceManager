@@ -72,7 +72,7 @@
             this.sairToolStripMenuItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(1067, 25);
+            this.MainMenu.Size = new System.Drawing.Size(773, 25);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "MainMenu";
             // 
@@ -220,7 +220,7 @@
             // Img04
             // 
             this.Img04.Image = global::ServiceManager.Properties.Resources.wallet;
-            this.Img04.Location = new System.Drawing.Point(393, 337);
+            this.Img04.Location = new System.Drawing.Point(361, 337);
             this.Img04.Name = "Img04";
             this.Img04.Size = new System.Drawing.Size(197, 153);
             this.Img04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +230,7 @@
             // Img02
             // 
             this.Img02.Image = global::ServiceManager.Properties.Resources.dollar;
-            this.Img02.Location = new System.Drawing.Point(393, 111);
+            this.Img02.Location = new System.Drawing.Point(361, 111);
             this.Img02.Name = "Img02";
             this.Img02.Size = new System.Drawing.Size(197, 153);
             this.Img02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -263,8 +263,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(773, 554);
             this.Controls.Add(this.Img04);
             this.Controls.Add(this.Img02);
             this.Controls.Add(this.Img03);
