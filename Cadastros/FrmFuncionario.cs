@@ -113,10 +113,10 @@ namespace ServiceManager.Cadastros
         private void AlterarImagemBd()
         {
             Conect.AbrirConexao();
-            
+
             sql = "UPDATE funcionarios SET  imagem = @imagem ";
             cmd = new MySqlCommand(sql, Conect.conec);
-            cmd.Parameters.AddWithValue("@imagem", img());            
+            cmd.Parameters.AddWithValue("@imagem", img());
             cmd.ExecuteNonQuery();
             Conect.FecharConexao();
             listar();
@@ -167,6 +167,9 @@ namespace ServiceManager.Cadastros
 
         private void SalvarEdicao()
         {
+            Conect.AbrirConexao();
+            cmd = new MySqlCommand(sql, Conect.conec);
+
             if (txtNome.Text.ToString().Trim() == "")
             {
                 MessageBox.Show("Prencha o campo nome", "Cadastro funcionarios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -182,20 +185,20 @@ namespace ServiceManager.Cadastros
             }
             if (ModoEdicao == true)
             {
-                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco WHERE id = @id";
+                sql = "UPDATE funcionarios SET  nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco WHERE id = @id ";
                 cmd = new MySqlCommand(sql, Conect.conec);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
                 cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
                 cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
-                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);               
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
+
             }
             if (alterouImagem == true)
             {
                 AlterarImagemBd();
             }
-
             if (txtCpf.Text != cpfAntigo)
             {
                 MySqlCommand cmdVerificar;
@@ -210,11 +213,10 @@ namespace ServiceManager.Cadastros
                     MessageBox.Show("CPF já registrado", "Cadastro de funcionários", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
-                cmd.ExecuteNonQuery();
-                Conect.FecharConexao();
-                listar();
             }
-
+            cmd.ExecuteNonQuery();
+            Conect.FecharConexao();
+            listar();
             MessageBox.Show("Registro Editado com Sucesso!", "Cadastro funcionários", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnEditar.Enabled = false;
             btnNovo.Enabled = false;
@@ -238,7 +240,7 @@ namespace ServiceManager.Cadastros
             ListarCargos();
             LimparFoto();
             listar();
-            FormatarGD();            
+            FormatarGD();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -256,7 +258,7 @@ namespace ServiceManager.Cadastros
             else
             {
                 SalvarEdicao();
-            }         
+            }
         }
         private void btnImagen_Click(object sender, EventArgs e)
         {
@@ -268,7 +270,7 @@ namespace ServiceManager.Cadastros
                 imgFuncionario.ImageLocation = foto;
                 alterouImagem = true;
             }
-            
+
         }
 
         private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -284,7 +286,7 @@ namespace ServiceManager.Cadastros
 
                 id = grid.CurrentRow.Cells[0].Value.ToString();
                 txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
-                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();                
+                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
                 txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
                 cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
                 txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
@@ -359,17 +361,11 @@ namespace ServiceManager.Cadastros
             DataTable dt = new DataTable();
             da.Fill(dt);
             cbCargo.DataSource = dt;
-            // cbCargo.ValueMember = "ID";
             cbCargo.DisplayMember = "nomeCargo";
             Conect.FecharConexao();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AlterarImagemBd();
-        }
+        }       
     }
 }
-        
-    
+
+
 
