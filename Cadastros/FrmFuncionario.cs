@@ -1,8 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ServiceManager.Cadastros
@@ -110,18 +115,6 @@ namespace ServiceManager.Cadastros
             grid.Columns[7].Visible = false;
         }
 
-        private void AlterarImagemBd()
-        {
-            Conect.AbrirConexao();
-            
-            sql = "UPDATE funcionarios SET  imagem = @imagem ";
-            cmd = new MySqlCommand(sql, Conect.conec);
-            cmd.Parameters.AddWithValue("@imagem", img());            
-            cmd.ExecuteNonQuery();
-            Conect.FecharConexao();
-            listar();
-        }
-
         private void SalvarNovo()
         {
             if (txtNome.Text.ToString().Trim() == "")
@@ -180,20 +173,30 @@ namespace ServiceManager.Cadastros
                 txtCpf.Focus();
                 return;
             }
-            if (ModoEdicao == true)
+
+            Conect.AbrirConexao();
+            if (alterouImagem == false)
             {
-                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco WHERE id = @id";
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, imagem = @imagem ";
                 cmd = new MySqlCommand(sql, Conect.conec);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@nome", txtNome.Text);
                 cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
                 cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
                 cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
-                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);               
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
+                cmd.Parameters.AddWithValue("@imagem", img());
             }
-            if (alterouImagem == true)
+            else if (alterouImagem == false)
             {
-                AlterarImagemBd();
+                sql = "UPDATE funcionarios SET nome = @nome, cpf = @cpf, telefone = @telefone, cargo = @cargo, endereco = @endereco, imagem = @imagem ";
+                cmd = new MySqlCommand(sql, Conect.conec);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+                cmd.Parameters.AddWithValue("@cpf", txtCpf.Text);
+                cmd.Parameters.AddWithValue("@telefone", txtTelefone.Text);
+                cmd.Parameters.AddWithValue("@cargo", cbCargo.Text);
+                cmd.Parameters.AddWithValue("@endereco", txtEndereco.Text);
             }
 
             if (txtCpf.Text != cpfAntigo)
@@ -235,10 +238,10 @@ namespace ServiceManager.Cadastros
 
         private void FrmFuncionario_Load(object sender, EventArgs e)
         {
-            ListarCargos();
             LimparFoto();
             listar();
-            FormatarGD();            
+            FormatarGD();
+            alterouImagem = false;
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -256,7 +259,8 @@ namespace ServiceManager.Cadastros
             else
             {
                 SalvarEdicao();
-            }         
+            }
+
         }
         private void btnImagen_Click(object sender, EventArgs e)
         {
@@ -268,10 +272,9 @@ namespace ServiceManager.Cadastros
                 imgFuncionario.ImageLocation = foto;
                 alterouImagem = true;
             }
-            
         }
 
-        private void grid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
@@ -284,14 +287,11 @@ namespace ServiceManager.Cadastros
 
                 id = grid.CurrentRow.Cells[0].Value.ToString();
                 txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString();
-                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();                
+                txtCpf.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                cpfAntigo = grid.CurrentRow.Cells[2].Value.ToString();
                 txtTelefone.Text = grid.CurrentRow.Cells[3].Value.ToString();
                 cbCargo.Text = grid.CurrentRow.Cells[4].Value.ToString();
                 txtEndereco.Text = grid.CurrentRow.Cells[5].Value.ToString();
-
-                // Captura de dados
-                cpfAntigo = grid.CurrentRow.Cells[2].Value.ToString();
-                //
 
                 if (grid.CurrentRow.Cells[7].Value != DBNull.Value)
                 {
@@ -313,7 +313,7 @@ namespace ServiceManager.Cadastros
         private void btnEditar_Click(object sender, EventArgs e)
         {
             btnEditar.Enabled = false;
-            ModoEdicao = true;
+            ModoEdicao = (true);
             habilitarCampos();
             btnNovo.Enabled = false;
             btnExcluir.Enabled = false;
@@ -323,8 +323,6 @@ namespace ServiceManager.Cadastros
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            alterouImagem = false;
-            ModoEdicao = false;
             desabilitarCampos();
             limparCampos();
         }
@@ -347,26 +345,6 @@ namespace ServiceManager.Cadastros
                 desabilitarCampos();
                 btnNovo.Enabled = true;
             }
-        }
-
-        private void ListarCargos()
-        {
-            Conect.AbrirConexao();
-            sql = "SELECT * FROM cargos ORDER BY nomeCargo asc";
-            cmd = new MySqlCommand(sql, Conect.conec);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cbCargo.DataSource = dt;
-            // cbCargo.ValueMember = "ID";
-            cbCargo.DisplayMember = "nomeCargo";
-            Conect.FecharConexao();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AlterarImagemBd();
         }
     }
 }
