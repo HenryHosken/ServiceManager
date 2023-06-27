@@ -54,6 +54,7 @@
             this.Img02 = new System.Windows.Forms.PictureBox();
             this.Img03 = new System.Windows.Forms.PictureBox();
             this.Img01 = new System.Windows.Forms.PictureBox();
+            this.cargosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Img04)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Img02)).BeginInit();
@@ -72,7 +73,7 @@
             this.sairToolStripMenuItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(773, 25);
+            this.MainMenu.Size = new System.Drawing.Size(1490, 25);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "MainMenu";
             // 
@@ -81,6 +82,7 @@
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuFuncionariosCadastros,
             this.MenuClientesCadastros,
+            this.cargosToolStripMenuItem,
             this.MenuUsuariosCadastros,
             this.MenuFornecedoresCadastros});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
@@ -90,26 +92,26 @@
             // MenuFuncionariosCadastros
             // 
             this.MenuFuncionariosCadastros.Name = "MenuFuncionariosCadastros";
-            this.MenuFuncionariosCadastros.Size = new System.Drawing.Size(149, 22);
+            this.MenuFuncionariosCadastros.Size = new System.Drawing.Size(180, 22);
             this.MenuFuncionariosCadastros.Text = "Funcionários";
             this.MenuFuncionariosCadastros.Click += new System.EventHandler(this.MenuFuncionariosCadastros_Click);
             // 
             // MenuClientesCadastros
             // 
             this.MenuClientesCadastros.Name = "MenuClientesCadastros";
-            this.MenuClientesCadastros.Size = new System.Drawing.Size(149, 22);
+            this.MenuClientesCadastros.Size = new System.Drawing.Size(180, 22);
             this.MenuClientesCadastros.Text = "Clientes";
             // 
             // MenuUsuariosCadastros
             // 
             this.MenuUsuariosCadastros.Name = "MenuUsuariosCadastros";
-            this.MenuUsuariosCadastros.Size = new System.Drawing.Size(149, 22);
+            this.MenuUsuariosCadastros.Size = new System.Drawing.Size(180, 22);
             this.MenuUsuariosCadastros.Text = "Usuários";
             // 
             // MenuFornecedoresCadastros
             // 
             this.MenuFornecedoresCadastros.Name = "MenuFornecedoresCadastros";
-            this.MenuFornecedoresCadastros.Size = new System.Drawing.Size(149, 22);
+            this.MenuFornecedoresCadastros.Size = new System.Drawing.Size(180, 22);
             this.MenuFornecedoresCadastros.Text = "Fornecedores";
             // 
             // produtosToolStripMenuItem
@@ -215,12 +217,12 @@
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(41, 21);
             this.sairToolStripMenuItem.Text = "Sair";
-            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
+           
             // 
             // Img04
             // 
             this.Img04.Image = global::ServiceManager.Properties.Resources.wallet;
-            this.Img04.Location = new System.Drawing.Point(361, 337);
+            this.Img04.Location = new System.Drawing.Point(859, 353);
             this.Img04.Name = "Img04";
             this.Img04.Size = new System.Drawing.Size(197, 153);
             this.Img04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +232,7 @@
             // Img02
             // 
             this.Img02.Image = global::ServiceManager.Properties.Resources.dollar;
-            this.Img02.Location = new System.Drawing.Point(361, 111);
+            this.Img02.Location = new System.Drawing.Point(859, 127);
             this.Img02.Name = "Img02";
             this.Img02.Size = new System.Drawing.Size(197, 153);
             this.Img02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -240,7 +242,7 @@
             // Img03
             // 
             this.Img03.Image = global::ServiceManager.Properties.Resources.expenses;
-            this.Img03.Location = new System.Drawing.Point(12, 337);
+            this.Img03.Location = new System.Drawing.Point(510, 353);
             this.Img03.Name = "Img03";
             this.Img03.Size = new System.Drawing.Size(197, 153);
             this.Img03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -252,12 +254,19 @@
             this.Img01.ErrorImage = null;
             this.Img01.Image = global::ServiceManager.Properties.Resources.shopping_cart;
             this.Img01.InitialImage = null;
-            this.Img01.Location = new System.Drawing.Point(12, 111);
+            this.Img01.Location = new System.Drawing.Point(510, 127);
             this.Img01.Name = "Img01";
             this.Img01.Size = new System.Drawing.Size(197, 153);
             this.Img01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Img01.TabIndex = 1;
             this.Img01.TabStop = false;
+            // 
+            // cargosToolStripMenuItem
+            // 
+            this.cargosToolStripMenuItem.Name = "cargosToolStripMenuItem";
+            this.cargosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cargosToolStripMenuItem.Text = "Cargos";
+            this.cargosToolStripMenuItem.Click += new System.EventHandler(this.cargosToolStripMenuItem_Click);
             // 
             // MainFrm
             // 
@@ -265,7 +274,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.ClientSize = new System.Drawing.Size(773, 554);
+            this.ClientSize = new System.Drawing.Size(1490, 804);
             this.Controls.Add(this.Img04);
             this.Controls.Add(this.Img02);
             this.Controls.Add(this.Img03);
@@ -316,6 +325,7 @@
         private System.Windows.Forms.ToolStripMenuItem MenuMovimentacoesRelatorios;
         private System.Windows.Forms.ToolStripMenuItem MenuEntradasSaidasRelatorios;
         private System.Windows.Forms.ToolStripMenuItem MenuDespesasRelatorios;
+        private System.Windows.Forms.ToolStripMenuItem cargosToolStripMenuItem;
     }
 }
 

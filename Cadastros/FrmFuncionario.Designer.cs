@@ -29,85 +29,148 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFuncionario));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.cbCargo = new System.Windows.Forms.ComboBox();
-            this.grid = new System.Windows.Forms.DataGridView();
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnSalvar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnImagen = new System.Windows.Forms.Button();
-            this.imgFuncionario = new System.Windows.Forms.PictureBox();
-            this.txtEndereco = new System.Windows.Forms.TextBox();
-            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
-            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtTelefone = new System.Windows.Forms.MaskedTextBox();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
+            this.btnImagen = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.grid = new System.Windows.Forms.DataGridView();
+            this.imgFuncionario = new System.Windows.Forms.PictureBox();
+            this.cbCargo = new System.Windows.Forms.ComboBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgFuncionario)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // btnCancelar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nome :";
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(637, 505);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 58;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click_1);
             // 
-            // label2
+            // txtTelefone
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(304, 87);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "CPF :";
+            this.txtTelefone.Enabled = false;
+            this.txtTelefone.Location = new System.Drawing.Point(122, 76);
+            this.txtTelefone.Mask = "(00)00000-0000";
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(178, 22);
+            this.txtTelefone.TabIndex = 46;
             // 
-            // label3
+            // txtCpf
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 128);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Endereço :";
+            this.txtCpf.Enabled = false;
+            this.txtCpf.Location = new System.Drawing.Point(377, 76);
+            this.txtCpf.Mask = "000.000.000-00";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(185, 22);
+            this.txtCpf.TabIndex = 44;
             // 
-            // label4
+            // txtEndereco
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 90);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Telefone :";
+            this.txtEndereco.Enabled = false;
+            this.txtEndereco.Location = new System.Drawing.Point(122, 118);
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(178, 22);
+            this.txtEndereco.TabIndex = 50;
             // 
-            // label5
+            // btnImagen
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(302, 128);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 25);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Cargo :";
+            this.btnImagen.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnImagen.Enabled = false;
+            this.btnImagen.FlatAppearance.BorderSize = 0;
+            this.btnImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImagen.Location = new System.Drawing.Point(578, 27);
+            this.btnImagen.Name = "btnImagen";
+            this.btnImagen.Size = new System.Drawing.Size(91, 38);
+            this.btnImagen.TabIndex = 57;
+            this.btnImagen.Text = "Foto :";
+            this.btnImagen.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnImagen.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnImagen.UseVisualStyleBackColor = false;
+            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click_1);
             // 
-            // txtNome
+            // btnEditar
             // 
-            this.txtNome.Enabled = false;
-            this.txtNome.Location = new System.Drawing.Point(118, 46);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(440, 22);
-            this.txtNome.TabIndex = 1;
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Location = new System.Drawing.Point(475, 505);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 56;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.Enabled = false;
+            this.btnExcluir.Location = new System.Drawing.Point(556, 505);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
+            this.btnExcluir.TabIndex = 55;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click_1);
+            // 
+            // btnSalvar
+            // 
+            this.btnSalvar.Enabled = false;
+            this.btnSalvar.Location = new System.Drawing.Point(394, 505);
+            this.btnSalvar.Name = "btnSalvar";
+            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.TabIndex = 54;
+            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click_1);
+            // 
+            // btnNovo
+            // 
+            this.btnNovo.Location = new System.Drawing.Point(313, 505);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(75, 23);
+            this.btnNovo.TabIndex = 53;
+            this.btnNovo.Text = "Novo";
+            this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click_1);
+            // 
+            // grid
+            // 
+            this.grid.AllowUserToAddRows = false;
+            this.grid.AllowUserToDeleteRows = false;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Location = new System.Drawing.Point(21, 175);
+            this.grid.Name = "grid";
+            this.grid.ReadOnly = true;
+            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grid.Size = new System.Drawing.Size(648, 324);
+            this.grid.TabIndex = 52;
+            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick_1);
+            // 
+            // imgFuncionario
+            // 
+            this.imgFuncionario.Image = global::ServiceManager.Properties.Resources.camera;
+            this.imgFuncionario.Location = new System.Drawing.Point(669, 32);
+            this.imgFuncionario.Name = "imgFuncionario";
+            this.imgFuncionario.Size = new System.Drawing.Size(389, 467);
+            this.imgFuncionario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFuncionario.TabIndex = 51;
+            this.imgFuncionario.TabStop = false;
             // 
             // cbCargo
             // 
@@ -118,131 +181,68 @@
             "Gerente",
             "Mecânico",
             "Atendente"});
-            this.cbCargo.Location = new System.Drawing.Point(373, 130);
+            this.cbCargo.Location = new System.Drawing.Point(377, 116);
             this.cbCargo.Name = "cbCargo";
             this.cbCargo.Size = new System.Drawing.Size(185, 24);
-            this.cbCargo.TabIndex = 4;
+            this.cbCargo.TabIndex = 49;
             // 
-            // grid
+            // txtNome
             // 
-            this.grid.AllowUserToAddRows = false;
-            this.grid.AllowUserToDeleteRows = false;
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grid.Location = new System.Drawing.Point(17, 189);
-            this.grid.Name = "grid";
-            this.grid.ReadOnly = true;
-            this.grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grid.Size = new System.Drawing.Size(648, 324);
-            this.grid.TabIndex = 13;
-            this.grid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellContentClick);
+            this.txtNome.Enabled = false;
+            this.txtNome.Location = new System.Drawing.Point(122, 32);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(440, 22);
+            this.txtNome.TabIndex = 42;
             // 
-            // btnNovo
+            // label5
             // 
-            this.btnNovo.Location = new System.Drawing.Point(309, 519);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(75, 23);
-            this.btnNovo.TabIndex = 14;
-            this.btnNovo.Text = "Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(306, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 25);
+            this.label5.TabIndex = 48;
+            this.label5.Text = "Cargo :";
             // 
-            // btnSalvar
+            // label4
             // 
-            this.btnSalvar.Enabled = false;
-            this.btnSalvar.Location = new System.Drawing.Point(390, 519);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 15;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(16, 76);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 25);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Telefone :";
             // 
-            // btnExcluir
+            // label3
             // 
-            this.btnExcluir.Enabled = false;
-            this.btnExcluir.Location = new System.Drawing.Point(552, 519);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(75, 23);
-            this.btnExcluir.TabIndex = 16;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 25);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "Endereço :";
             // 
-            // btnEditar
+            // label2
             // 
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Location = new System.Drawing.Point(471, 519);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 17;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(308, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 25);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "CPF :";
             // 
-            // btnImagen
+            // label1
             // 
-            this.btnImagen.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.btnImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnImagen.Enabled = false;
-            this.btnImagen.FlatAppearance.BorderSize = 0;
-            this.btnImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImagen.Location = new System.Drawing.Point(574, 41);
-            this.btnImagen.Name = "btnImagen";
-            this.btnImagen.Size = new System.Drawing.Size(91, 38);
-            this.btnImagen.TabIndex = 18;
-            this.btnImagen.Text = "Foto :";
-            this.btnImagen.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnImagen.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.btnImagen.UseVisualStyleBackColor = false;
-            this.btnImagen.Click += new System.EventHandler(this.btnImagen_Click);
-            // 
-            // imgFuncionario
-            // 
-            this.imgFuncionario.Image = global::ServiceManager.Properties.Resources.camera;
-            this.imgFuncionario.Location = new System.Drawing.Point(665, 46);
-            this.imgFuncionario.Name = "imgFuncionario";
-            this.imgFuncionario.Size = new System.Drawing.Size(389, 467);
-            this.imgFuncionario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgFuncionario.TabIndex = 12;
-            this.imgFuncionario.TabStop = false;
-            // 
-            // txtEndereco
-            // 
-            this.txtEndereco.Enabled = false;
-            this.txtEndereco.Location = new System.Drawing.Point(118, 132);
-            this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(178, 22);
-            this.txtEndereco.TabIndex = 5;
-            // 
-            // txtCpf
-            // 
-            this.txtCpf.Enabled = false;
-            this.txtCpf.Location = new System.Drawing.Point(373, 90);
-            this.txtCpf.Mask = "000.000.000-00";
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(185, 22);
-            this.txtCpf.TabIndex = 2;
-            // 
-            // txtTelefone
-            // 
-            this.txtTelefone.Enabled = false;
-            this.txtTelefone.Location = new System.Drawing.Point(118, 90);
-            this.txtTelefone.Mask = "(00)00000-0000";
-            this.txtTelefone.Name = "txtTelefone";
-            this.txtTelefone.Size = new System.Drawing.Size(178, 22);
-            this.txtTelefone.TabIndex = 3;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(633, 519);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 22;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 25);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Nome :";
             // 
             // FrmFuncionario
             // 
@@ -284,23 +284,23 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.ComboBox cbCargo;
-        private System.Windows.Forms.PictureBox imgFuncionario;
-        private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Button btnExcluir;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnImagen;
-        private System.Windows.Forms.TextBox txtEndereco;
-        private System.Windows.Forms.MaskedTextBox txtCpf;
-        private System.Windows.Forms.MaskedTextBox txtTelefone;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.MaskedTextBox txtTelefone;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
+        private System.Windows.Forms.TextBox txtEndereco;
+        private System.Windows.Forms.Button btnImagen;
+        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnExcluir;
+        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnNovo;
+        private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.PictureBox imgFuncionario;
+        private System.Windows.Forms.ComboBox cbCargo;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

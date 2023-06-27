@@ -5,12 +5,14 @@ using System.Windows.Forms;
 namespace ServiceManager
 {
     internal class Conexao
-    {
+    {       
+        
+        private MySqlCommand cmd;
         // String de conexão com o banco de dados MySQL
-        public string conect = "SERVER=localhost; DATABASE=managerservices; UID=root; PWP=; PORT=;";
+        private string conect = "SERVER=localhost; DATABASE=managerservices; UID=root; PWP=; PORT=;";
 
         // Objeto de conexão com o banco de dados
-        public MySqlConnection conec = null;
+        public MySqlConnection connection = null;
 
         // Método para abrir a conexão com o banco de dados
         public void AbrirConexao()
@@ -18,9 +20,9 @@ namespace ServiceManager
             try
             {
                 // Criação de um novo objeto MySqlConnection usando a string de conexão
-                conec = new MySqlConnection(conect);
+                connection = new MySqlConnection(conect);
                 // Abre a conexão com o banco de dados
-                conec.Open();
+                connection.Open();
             }
             catch (Exception ex)
             {
@@ -36,13 +38,13 @@ namespace ServiceManager
             try
             {
                 // Criação de um novo objeto MySqlConnection usando a string de conexão
-                conec = new MySqlConnection(conect);
+                connection = new MySqlConnection(conect);
                 // Fecha a conexão com o banco de dados
-                conec.Close();
+                connection.Close();
                 // Libera os recursos associados à conexão
-                conec.Dispose();
+                connection.Dispose();
                 // Limpa todos os pools de conexão assincronamente
-                conec.ClearAllPoolsAsync();
+                connection.ClearAllPoolsAsync();
             }
             catch (Exception ex)
             {
@@ -50,5 +52,6 @@ namespace ServiceManager
                 MessageBox.Show("Erro de conexão com o banco de dados " + ex);
             }
         }
+       
     }
 }

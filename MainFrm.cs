@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,23 @@ namespace ServiceManager
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            var res = MessageBox.Show("Deseja realmente sair ?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void MenuFuncionariosCadastros_Click(object sender, EventArgs e)
         {
-           FrmFuncionario frm = new FrmFuncionario();
+            FrmFuncionario frm = new FrmFuncionario();
             frm.ShowDialog();
         }
+
+        private void cargosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCargo frmCargo = new FrmCargo();
+            frmCargo.ShowDialog();
+        }        
     }
 }
